@@ -31,6 +31,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblNumberPlate = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnTest2 = new System.Windows.Forms.Button();
@@ -38,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtFromToppx = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnLoadPicToCal = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.btnTestROI = new System.Windows.Forms.Button();
             this.txtHeight = new System.Windows.Forms.TextBox();
@@ -55,19 +59,16 @@
             this.lblProcessFiles = new System.Windows.Forms.Label();
             this.lblTotalFile = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnLoadPicToCal = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lblNumberPlate = new System.Windows.Forms.Label();
+            this.lblAccuracy = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -108,6 +109,41 @@
             this.splitContainer1.Size = new System.Drawing.Size(939, 490);
             this.splitContainer1.SplitterDistance = 641;
             this.splitContainer1.TabIndex = 7;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::NumberPlatReaderTester.Properties.Resources.scene00169;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(2304, 1314);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lblAccuracy);
+            this.groupBox3.Controls.Add(this.lblNumberPlate);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox3.Location = new System.Drawing.Point(0, 68);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(294, 74);
+            this.groupBox3.TabIndex = 16;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Vehicle Reg. Number && Accuracy";
+            // 
+            // lblNumberPlate
+            // 
+            this.lblNumberPlate.AutoSize = true;
+            this.lblNumberPlate.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblNumberPlate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumberPlate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblNumberPlate.Location = new System.Drawing.Point(3, 16);
+            this.lblNumberPlate.Name = "lblNumberPlate";
+            this.lblNumberPlate.Size = new System.Drawing.Size(98, 20);
+            this.lblNumberPlate.TabIndex = 0;
+            this.lblNumberPlate.Text = "XXX XXX X ";
             // 
             // groupBox2
             // 
@@ -188,6 +224,16 @@
             this.groupBox1.Size = new System.Drawing.Size(294, 101);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
+            // 
+            // btnLoadPicToCal
+            // 
+            this.btnLoadPicToCal.Location = new System.Drawing.Point(9, 44);
+            this.btnLoadPicToCal.Name = "btnLoadPicToCal";
+            this.btnLoadPicToCal.Size = new System.Drawing.Size(135, 23);
+            this.btnLoadPicToCal.TabIndex = 11;
+            this.btnLoadPicToCal.Text = "Load pic to calibration";
+            this.btnLoadPicToCal.UseVisualStyleBackColor = true;
+            this.btnLoadPicToCal.Click += new System.EventHandler(this.btnLoadPicToCal_Click);
             // 
             // label8
             // 
@@ -365,48 +411,17 @@
             this.button1.Text = "Test 1";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // btnLoadPicToCal
+            // lblAccuracy
             // 
-            this.btnLoadPicToCal.Location = new System.Drawing.Point(9, 44);
-            this.btnLoadPicToCal.Name = "btnLoadPicToCal";
-            this.btnLoadPicToCal.Size = new System.Drawing.Size(135, 23);
-            this.btnLoadPicToCal.TabIndex = 11;
-            this.btnLoadPicToCal.Text = "Load pic to calibration";
-            this.btnLoadPicToCal.UseVisualStyleBackColor = true;
-            this.btnLoadPicToCal.Click += new System.EventHandler(this.btnLoadPicToCal_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::NumberPlatReaderTester.Properties.Resources.scene00169;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(2304, 1314);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.lblNumberPlate);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox3.Location = new System.Drawing.Point(0, 68);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(294, 74);
-            this.groupBox3.TabIndex = 16;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Vehicle Reg. Number";
-            // 
-            // lblNumberPlate
-            // 
-            this.lblNumberPlate.AutoSize = true;
-            this.lblNumberPlate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberPlate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lblNumberPlate.Location = new System.Drawing.Point(6, 26);
-            this.lblNumberPlate.Name = "lblNumberPlate";
-            this.lblNumberPlate.Size = new System.Drawing.Size(233, 25);
-            this.lblNumberPlate.TabIndex = 0;
-            this.lblNumberPlate.Text = "XXX XXX X XX-XXXXX";
+            this.lblAccuracy.AutoSize = true;
+            this.lblAccuracy.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblAccuracy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAccuracy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblAccuracy.Location = new System.Drawing.Point(193, 16);
+            this.lblAccuracy.Name = "lblAccuracy";
+            this.lblAccuracy.Size = new System.Drawing.Size(98, 20);
+            this.lblAccuracy.TabIndex = 1;
+            this.lblAccuracy.Text = "XXX XXX X ";
             // 
             // Form1
             // 
@@ -423,15 +438,15 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,6 +485,7 @@
         private System.Windows.Forms.Button btnLoadPicToCal;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lblNumberPlate;
+        private System.Windows.Forms.Label lblAccuracy;
     }
 }
 

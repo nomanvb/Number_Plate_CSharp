@@ -12,6 +12,7 @@ using System.IO;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using AdvancedCognition.Imaging;
+using Newtonsoft.Json;
 
 namespace NumberPlatReaderTester
 {
@@ -200,6 +201,36 @@ namespace NumberPlatReaderTester
             }
         }
 
+        private NumberPlateInfo  CheckNumberPlateWithAccuracy(string FilePath)
+        {
+            
+            System.Uri u = new Uri("http://app.cogedg.com:4555/api_2/");
+            using (var client = new WebClient())
+            {
+                byte[] reslut;
+                try
+                {
+                    reslut = client.UploadFile(u, FilePath);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex; 
+                }
+                var str = System.Text.Encoding.UTF8.GetString(reslut);
+
+
+                return JsonConvert.DeserializeObject<NumberPlateInfo>(str);
+                
+                // JSON Format 
+                 //               {
+                 //"Accuracy": "85.19", 
+                 //"NumberPlate": "Dhaka Metro Gha \n11 -0334"
+                 //                 }
+
+            }
+        }
+
         private void Writelog(string Logpath,string logtext)
         {
             string path = Logpath + @"\log.txt";
@@ -285,7 +316,7 @@ namespace NumberPlatReaderTester
             if (d == System.Windows.Forms.DialogResult.OK)
             {
                 System.IO.FileInfo fInfo = new System.IO.FileInfo(openFileDialog1.FileName);
-
+                
 
                 string strFilePath = fInfo.DirectoryName + @"\" + fInfo.Name;
                 Image _originalImage; Image imgCrop;
@@ -298,6 +329,7 @@ namespace NumberPlatReaderTester
 
                 foreach (string _file in Allfiles)
                 {
+                    NumberPlateInfo npf = new NumberPlateInfo();
                     FileCounter = FileCounter + 1;
                     lblProcessFiles.Text = "Total Proc.: " + FileCounter.ToString();
                     Application.DoEvents();
@@ -324,21 +356,33 @@ namespace NumberPlatReaderTester
 
                     Application.DoEvents();
                     imgC.Save(@"d:\crop.jpg");
-                        Result = CheckNumberPlate(@"d:\crop.jpg");
-                        Writelog(fInfo.DirectoryName, Environment.NewLine + "Result: " + Result);
-                        if (!Result.Contains("failed"))
+                    try
+                    {
+                        npf = CheckNumberPlateWithAccuracy(@"d:\crop.jpg");
+                    }
+                    catch (Exception ex)
+                    {
+                        Writelog(fInfo.DirectoryName, Environment.NewLine + "Error: " + ex.Message.ToString());
+                        continue;
+                    }
+                        
+                        Writelog(fInfo.DirectoryName, Environment.NewLine + "Result: " + npf.NumberPlate);
+                        if (npf.Accuracy!="0")
                         {
                             NumPlateFoundCount = NumPlateFoundCount + 1;
-                            lblNumPlatFound.Text = "F: " + NumPlateFoundCount.ToString();
-                            lblNumberPlate.Text = Result;
+                            lblNumPlatFound.Text = "Found: " + NumPlateFoundCount.ToString();
+                            lblNumberPlate.Text = npf.NumberPlate;
+                            lblAccuracy.Text = npf.Accuracy;
+
                             Application.DoEvents();
-                            SuccessLog(fInfo.DirectoryName, Environment.NewLine + _file + "     number: " + Result);
+                            SuccessLog(fInfo.DirectoryName, Environment.NewLine + _file + "     number: " + npf.NumberPlate + " Accuracy: " + npf.Accuracy);
                         }
                         else
                         {
                             NumPlateNotFoundCount = NumPlateNotFoundCount + 1;
-                            lblNumPlateNotFound.Text = "N: " + NumPlateNotFoundCount.ToString();
-                            lblNumberPlate.Text = "Not Found";
+                            lblNumPlateNotFound.Text = "Not Found: " + NumPlateNotFoundCount.ToString();
+                            lblNumberPlate.Text = npf.NumberPlate;
+                            lblAccuracy.Text = npf.Accuracy;
                             Application.DoEvents();
                         }
 

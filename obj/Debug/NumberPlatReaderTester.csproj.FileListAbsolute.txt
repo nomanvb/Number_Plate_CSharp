@@ -1,0 +1,9 @@
+G:\OneDrive\Noman Wrok\Bangla vehicle number plate reader\Number_Plate_CSharp\Number_Plate_CSharp\bin\Debug\NumberPlatReaderTester.exe.config
+G:\OneDrive\Noman Wrok\Bangla vehicle number plate reader\Number_Plate_CSharp\Number_Plate_CSharp\bin\Debug\NumberPlatReaderTester.exe
+G:\OneDrive\Noman Wrok\Bangla vehicle number plate reader\Number_Plate_CSharp\Number_Plate_CSharp\bin\Debug\NumberPlatReaderTester.pdb
+G:\OneDrive\Noman Wrok\Bangla vehicle number plate reader\Number_Plate_CSharp\Number_Plate_CSharp\obj\Debug\NumberPlatReaderTester.Form1.resources
+G:\OneDrive\Noman Wrok\Bangla vehicle number plate reader\Number_Plate_CSharp\Number_Plate_CSharp\obj\Debug\NumberPlatReaderTester.Properties.Resources.resources
+G:\OneDrive\Noman Wrok\Bangla vehicle number plate reader\Number_Plate_CSharp\Number_Plate_CSharp\obj\Debug\NumberPlatReaderTester.csproj.GenerateResource.Cache
+G:\OneDrive\Noman Wrok\Bangla vehicle number plate reader\Number_Plate_CSharp\Number_Plate_CSharp\obj\Debug\NumberPlatReaderTester.exe
+G:\OneDrive\Noman Wrok\Bangla vehicle number plate reader\Number_Plate_CSharp\Number_Plate_CSharp\obj\Debug\NumberPlatReaderTester.pdb
+G:\OneDrive\Noman Wrok\Bangla vehicle number plate reader\Number_Plate_CSharp\Number_Plate_CSharp\bin\Debug\Newtonsoft.Json.dll
