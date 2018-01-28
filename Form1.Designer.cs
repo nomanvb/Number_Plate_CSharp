@@ -33,6 +33,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblAccuracy = new System.Windows.Forms.Label();
             this.lblNumberPlate = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@
             this.lblProcessFiles = new System.Windows.Forms.Label();
             this.lblTotalFile = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.lblAccuracy = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -133,6 +133,18 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Vehicle Reg. Number && Accuracy";
             // 
+            // lblAccuracy
+            // 
+            this.lblAccuracy.AutoSize = true;
+            this.lblAccuracy.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblAccuracy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAccuracy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblAccuracy.Location = new System.Drawing.Point(193, 16);
+            this.lblAccuracy.Name = "lblAccuracy";
+            this.lblAccuracy.Size = new System.Drawing.Size(98, 20);
+            this.lblAccuracy.TabIndex = 1;
+            this.lblAccuracy.Text = "XXX XXX X ";
+            // 
             // lblNumberPlate
             // 
             this.lblNumberPlate.AutoSize = true;
@@ -158,6 +170,7 @@
             this.groupBox2.Size = new System.Drawing.Size(294, 104);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Visible = false;
             // 
             // label9
             // 
@@ -410,18 +423,6 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "Test 1";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // lblAccuracy
-            // 
-            this.lblAccuracy.AutoSize = true;
-            this.lblAccuracy.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblAccuracy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAccuracy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lblAccuracy.Location = new System.Drawing.Point(193, 16);
-            this.lblAccuracy.Name = "lblAccuracy";
-            this.lblAccuracy.Size = new System.Drawing.Size(98, 20);
-            this.lblAccuracy.TabIndex = 1;
-            this.lblAccuracy.Text = "XXX XXX X ";
             // 
             // Form1
             // 

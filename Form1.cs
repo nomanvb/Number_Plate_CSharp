@@ -72,7 +72,7 @@ namespace NumberPlatReaderTester
 
             label1.Text = "";
 
-            string Result = "";
+            
             Rectangle _selection;
 
             DialogResult d = openFileDialog1.ShowDialog();
@@ -111,8 +111,10 @@ namespace NumberPlatReaderTester
                 Debug.WriteLine("V Reso: " + _originalImage.VerticalResolution.ToString());
                 Writelog(fInfo.DirectoryName, Environment.NewLine + "V Reso: " + _originalImage.VerticalResolution.ToString());
 
+                NumberPlateInfo npf = new NumberPlateInfo();
                 if (_originalImage.Size.Width>450)
                 {
+                   
                     double spl = (double)(_originalImage.Size.Width / 450);
                     for (int i = 0; i < spl; i++)
                     {
@@ -131,15 +133,24 @@ namespace NumberPlatReaderTester
                         pictureBox1.Image = imgC;
                         Application.DoEvents();
                         imgC.Save( @"d:\crop.jpg");
-                       Result= CheckNumberPlate(@"d:\crop.jpg");
-                       Writelog(fInfo.DirectoryName, Environment.NewLine + "Result: " + Result);
-                       if (!Result.Contains("failed") )
+                      
+                         try
+                            {
+                                npf = CheckNumberPlateWithAccuracy(@"d:\crop.jpg");
+                            }
+                         catch (Exception ex)
+                         {
+                             Writelog(fInfo.DirectoryName, Environment.NewLine + "Error: " + ex.Message.ToString());
+                             continue;
+                         }
+                       Writelog(fInfo.DirectoryName, Environment.NewLine + "Number: " + npf.NumberPlate + " Accuracy: " + npf.Accuracy);
+                       if (npf.Accuracy !="0" )
                        {
                            NumPlateFoundCount = NumPlateFoundCount + 1;
                            lblNumPlatFound.Text = "Total Found: " + NumPlateFoundCount.ToString();
-                           lblNumberPlate.Text = Result;
+                           lblNumberPlate.Text = npf.NumberPlate;
                            Application.DoEvents();
-                           SuccessLog(fInfo.DirectoryName, Environment.NewLine + _file + "     number: " + Result);
+                           SuccessLog(fInfo.DirectoryName, Environment.NewLine + _file + " Number: " + npf.NumberPlate + " Accuracy: " + npf.Accuracy);
                        }
                        else
                        {
@@ -154,14 +165,24 @@ namespace NumberPlatReaderTester
                 else
                 {
                     _originalImage.Save(@"d:\crop.jpg");
-                   Result= CheckNumberPlate(@"d:\crop.jpg");
-                   Writelog(fInfo.DirectoryName, Environment.NewLine + "Result: " + Result);
-                   if (!Result.Contains("failed"))
+                    try
+                    {
+                        npf = CheckNumberPlateWithAccuracy(@"d:\crop.jpg");
+                    }
+                    catch (Exception ex)
+                    {
+                        Writelog(fInfo.DirectoryName, Environment.NewLine + "Error: " + ex.Message.ToString());
+                        continue;
+                    }
+                    Writelog(fInfo.DirectoryName, Environment.NewLine + "Number: " + npf.NumberPlate + " Accuracy: " + npf.Accuracy);
+
+ 
+                   if (npf.Accuracy !="0")
                    {
                        NumPlateFoundCount = NumPlateFoundCount + 1;
                        lblNumPlatFound.Text = "Total Found: " + NumPlateFoundCount.ToString();
                        Application.DoEvents();
-                       SuccessLog(fInfo.DirectoryName, Environment.NewLine + _file + "     number: " + Result);
+                       SuccessLog(fInfo.DirectoryName, Environment.NewLine + _file + " Number: " + npf.NumberPlate + " Accuracy: " + npf.Accuracy);
                    }
                    else
                    {
@@ -179,32 +200,12 @@ namespace NumberPlatReaderTester
             }
         }
 
-        private string CheckNumberPlate(string FilePath)
-        {
-            System.Uri u = new Uri("http://app.cogedg.com:4555/api/");
-            using (var client = new WebClient())
-            {
-                byte[] reslut;
-                try
-                {
-                    reslut = client.UploadFile(u, FilePath);
-                }
-                catch (Exception ex)
-                {
-                    //label1.Text = ex.Message.ToString();
-                    return ex.Message.ToString(); ;
-                }
-                var str = System.Text.Encoding.UTF8.GetString(reslut);
-                return str;
-                //label1.Text = str;
-                //Writelog(Environment.NewLine + "Result: " + str);
-            }
-        }
+        
 
         private NumberPlateInfo  CheckNumberPlateWithAccuracy(string FilePath)
         {
             
-            System.Uri u = new Uri("http://app.cogedg.com:4555/api_2/");
+            System.Uri u = new Uri("http://app.cogedg.com:4555/api/");
             using (var client = new WebClient())
             {
                 byte[] reslut;
@@ -222,11 +223,7 @@ namespace NumberPlatReaderTester
 
                 return JsonConvert.DeserializeObject<NumberPlateInfo>(str);
                 
-                // JSON Format 
-                 //               {
-                 //"Accuracy": "85.19", 
-                 //"NumberPlate": "Dhaka Metro Gha \n11 -0334"
-                 //                 }
+
 
             }
         }
@@ -366,7 +363,7 @@ namespace NumberPlatReaderTester
                         continue;
                     }
                         
-                        Writelog(fInfo.DirectoryName, Environment.NewLine + "Result: " + npf.NumberPlate);
+                        Writelog(fInfo.DirectoryName, Environment.NewLine + "Result: " + npf.NumberPlate + " Accuracy: " + npf.Accuracy);
                         if (npf.Accuracy!="0")
                         {
                             NumPlateFoundCount = NumPlateFoundCount + 1;
