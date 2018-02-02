@@ -4,10 +4,10 @@ This system only works with Retro-Reflective Number Plate issued by Bangladesh R
 
 ![test result](https://user-images.githubusercontent.com/15852967/35750172-085c2a6a-084c-11e8-9005-cdb76e3461b9.jpg)
 
-When the api returns number plate information and accuracy in JSON format shown below.
+The API returns number plate information and accuracy in JSON format shown below.
 ```JSON
 {
-Number_Plate:XXXXXXXX,
+NumberPlate:XXXX XXXX XX-XXXX,
 Accuracy:xx.xx
 }
 ```
